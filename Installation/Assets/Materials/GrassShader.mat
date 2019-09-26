@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GrassShader
+  m_Shader: {fileID: 4800000, guid: 06d34b7ded2c18244ac0c715e68bcfa6, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _RTCam:
+        m_Texture: {fileID: 8400000, guid: ea7dceeec9a34cb45838ce93f1b9ebec, type: 2}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: ec818dfaa24dab24fb4651075b70baf8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Wind:
+        m_Texture: {fileID: 2800000, guid: 419ad6d27aeb70d409d4006b81b37996, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BendStrenght: 1
+    - _Deform: 0
+    - _Float0: 0.59
+    - _Float3: 4.83
+    - _Float4: 13.8
+    - _Float5: 1.72
+    - _Height: 3.55
+    - _Size: 15.85
+    - _SmallVal: 0.001
+    - _TessValue: 1
+    - _Tile: 50
+    - __dirty: 0
+    - _h: 8.96
+    m_Colors:
+    - _C: {r: 0, g: 0, b: 0, a: 0}
+    - _Speed: {r: 0.1, g: 0.1, b: 0, a: 0}
+    - _Vector0: {r: 0, g: 10.08, b: 0, a: 0}
