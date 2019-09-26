@@ -6,7 +6,7 @@ using UnityEngine.Windows.Speech;
 using System.Drawing;
 using System.Linq;
 
-public class SoundInput : MonoBehaviour
+public class SoundInput : MonoBehaviour 
 {
     AudioSource audioSource;
     string micName;
