@@ -17,11 +17,15 @@ public class SoundInput : MonoBehaviour
     Dictionary<string, System.Action> keywords = new Dictionary<string, System.Action>();
 
     public static string command;
+    string prevCmd;
 
     public List<string> cmds = new List<string>();
 
     public GameObject testObj;
     bool cDefault;
+
+    public delegate void OnCommandChangeDelegate(string newCmd);
+    public event OnCommandChangeDelegate OnCommandChange;
 
     // Start is called before the first frame update
     void Start()
@@ -46,13 +50,34 @@ public class SoundInput : MonoBehaviour
         keywordRecognizer.OnPhraseRecognized += KeywordRecognizer_OnPhraseRecognized;
 
         keywordRecognizer.Start();
+
+        OnCommandChange += CommandChangeHandler;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (command != prevCmd && OnCommandChange != null)
+        {
+            prevCmd = command;
+            OnCommandChange(command);
+        }
+    }
+
+    private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+    {
+        System.Action keywordAction;
+        // if the keyword recognized is in our dictionary, call that Action.
+        if (keywords.TryGetValue(args.text, out keywordAction))
+        {
+            keywordAction.Invoke();
+        }
+    }
+
+    private void CommandChangeHandler(string newCmd)
+    {
         var c = System.Drawing.Color.FromName(command);
-        print(c.R + " " + c.G + " " + c.B);
+
         if (c.R == 0 && c.G == 0 && c.B == 0)
         {
             if (command != "Black")
@@ -68,19 +93,24 @@ public class SoundInput : MonoBehaviour
         {
             cDefault = false;
         }
+
         if (!cDefault)
         {
-            testObj.GetComponent<Renderer>().sharedMaterial.color = new UnityEngine.Color(c.R, c.G, c.B, c.A);
+            ChangeColor(c);
+        }
+        else
+        {
+            switch (command)
+            {
+                case "Friend":
+                    print("You are my friend");
+                    break;
+            }
         }
     }
 
-    private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
+    public void ChangeColor(System.Drawing.Color c)
     {
-        System.Action keywordAction;
-        // if the keyword recognized is in our dictionary, call that Action.
-        if (keywords.TryGetValue(args.text, out keywordAction))
-        {
-            keywordAction.Invoke();
-        }
+        testObj.GetComponent<Renderer>().sharedMaterial.color = new UnityEngine.Color(c.R, c.G, c.B, c.A);
     }
 }
