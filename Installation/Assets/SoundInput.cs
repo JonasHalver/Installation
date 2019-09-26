@@ -27,6 +27,8 @@ public class SoundInput : MonoBehaviour
     public delegate void OnCommandChangeDelegate(string newCmd);
     public event OnCommandChangeDelegate OnCommandChange;
 
+    public GameObject particleSystem;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,8 +104,8 @@ public class SoundInput : MonoBehaviour
         {
             switch (command)
             {
-                case "Friend":
-                    print("You are my friend");
+                case "Gust":
+                    SpawnParticleSystem();
                     break;
             }
         }
@@ -112,5 +114,10 @@ public class SoundInput : MonoBehaviour
     public void ChangeColor(System.Drawing.Color c)
     {
         testObj.GetComponent<Renderer>().sharedMaterial.color = new UnityEngine.Color(c.R, c.G, c.B, c.A);
+    }
+
+    public void SpawnParticleSystem()
+    {
+        GameObject newPS = Instantiate(particleSystem, transform);
     }
 }

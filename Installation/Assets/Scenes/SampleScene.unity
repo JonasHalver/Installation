@@ -330,7 +330,7 @@ MonoBehaviour:
   - Red
   - Blue
   - Green
-  - Friend
+  - Gust
   - Orchid
   - SlateGray
   - Teal
@@ -338,6 +338,7 @@ MonoBehaviour:
   - Purple
   - Pink
   testObj: {fileID: 1821559830}
+  particleSystem: {fileID: 0}
 --- !u!82 &1246978504
 AudioSource:
   m_ObjectHideFlags: 0
@@ -461,7 +462,7 @@ GameObject:
   - component: {fileID: 1821559832}
   - component: {fileID: 1821559831}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: TestCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
