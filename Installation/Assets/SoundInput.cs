@@ -27,7 +27,8 @@ public class SoundInput : MonoBehaviour
     public delegate void OnCommandChangeDelegate(string newCmd);
     public event OnCommandChangeDelegate OnCommandChange;
 
-    public GameObject particleSystem;
+    public ParticleSystem stormPS, discoPS;
+    public GameObject gustPS, hurricanePS;
 
     // Start is called before the first frame update
     void Start()
@@ -46,6 +47,7 @@ public class SoundInput : MonoBehaviour
             {
                 print(cmd);
                 command = cmd;
+                RunCommand(cmd);
             });
         }
         keywordRecognizer = new KeywordRecognizer(keywords.Keys.ToArray());
@@ -53,17 +55,17 @@ public class SoundInput : MonoBehaviour
 
         keywordRecognizer.Start();
 
-        OnCommandChange += CommandChangeHandler;
+        //OnCommandChange += CommandChangeHandler;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (command != prevCmd && OnCommandChange != null)
-        {
-            prevCmd = command;
-            OnCommandChange(command);
-        }
+        //if (command != prevCmd && OnCommandChange != null)
+        //{
+        //    prevCmd = command;
+        //    OnCommandChange(command);
+        //}
     }
 
     private void KeywordRecognizer_OnPhraseRecognized(PhraseRecognizedEventArgs args)
@@ -76,7 +78,7 @@ public class SoundInput : MonoBehaviour
         }
     }
 
-    private void CommandChangeHandler(string newCmd)
+    private void RunCommand(string newCmd)
     {
         var c = System.Drawing.Color.FromName(command);
 
@@ -104,8 +106,25 @@ public class SoundInput : MonoBehaviour
         {
             switch (command)
             {
+                case "Disco":
+                    Disco(true);
+                    break;
                 case "Gust":
-                    SpawnParticleSystem();
+                case "Burst":
+                    Gust();
+                    break;
+                case "Storm":
+                    Storm(true);
+                    break;
+                case "Swirl":
+                case "Hurricane":
+                    Hurricane(true);
+                    break;
+                case "Calm":
+                case "Stop":
+                    Storm(false);
+                    Disco(false);
+                    Hurricane(false);
                     break;
             }
         }
@@ -113,11 +132,67 @@ public class SoundInput : MonoBehaviour
 
     public void ChangeColor(System.Drawing.Color c)
     {
-        testObj.GetComponent<Renderer>().sharedMaterial.color = new UnityEngine.Color(c.R, c.G, c.B, c.A);
+        UnityEngine.Color matC = new UnityEngine.Color(c.R, c.G, c.B, 0);
+        UnityEngine.Color matC2 = new UnityEngine.Color(0.8f * c.R, 0.8f * c.G, 0.8f * c.B, 0);
+        //testObj.GetComponent<Renderer>().sharedMaterial.SetColor("_Grass2", matC);
+        testObj.GetComponent<Renderer>().sharedMaterial.SetColor("_Grass1", matC);
+    }
+
+    public void Hurricane(bool start)
+    {
+        for (int i = 0; i < hurricanePS.transform.childCount; i++)
+        {
+            if (hurricanePS.transform.GetChild(i).GetComponent<ParticleSystem>() != null)
+            {
+                if (start)
+                {
+                    hurricanePS.transform.GetChild(i).GetComponent<ParticleSystem>().Play();
+                }
+                else
+                {
+                    hurricanePS.transform.GetChild(i).GetComponent<ParticleSystem>().Stop();
+                }
+            }
+        }
+    }
+
+    public void Gust()
+    {
+        GameObject newGust = Instantiate(gustPS, Vector3.up*0.1f, Quaternion.Euler(0, 0, 0));
+    }
+
+    public void Disco(bool start)
+    {
+        if (start)
+        {
+            discoPS.Play();
+        }
+        else
+        {
+            discoPS.Stop();
+        }
+    }
+
+    public void Storm(bool intensify)
+    {
+        UnityEngine.Color c = stormPS.main.startColor.color;
+        if (intensify)
+        {
+            c = new UnityEngine.Color(c.r, c.g, c.b, 1);
+        }
+        else
+        {
+            c = new UnityEngine.Color(c.r, c.g, c.b, 0.1f);
+        }
+        var mainMod = stormPS.main;
+        var startColor = mainMod.startColor;
+        startColor.color = c;
+        mainMod.startColor = startColor;
+        //particleSystem.GetComponent<ParticleSystem>().main.startColor = startColor;
     }
 
     public void SpawnParticleSystem()
     {
-        GameObject newPS = Instantiate(particleSystem, transform);
+        
     }
 }
