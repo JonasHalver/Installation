@@ -36,20 +36,22 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BendStrenght: 1
-    - _Deform: 0
+    - _BendStrenght: 2
+    - _Deform: 0.2
     - _Float0: 0.59
     - _Float3: 4.83
     - _Float4: 13.8
-    - _Float5: 1.72
+    - _Float5: 1
     - _Height: 3.55
     - _Size: 15.85
     - _SmallVal: 0.001
     - _TessValue: 1
-    - _Tile: 50
+    - _Tile: 55
     - __dirty: 0
     - _h: 8.96
     m_Colors:
     - _C: {r: 0, g: 0, b: 0, a: 0}
+    - _Grass1: {r: 0.058339257, g: 0.21698111, b: 0.1031172, a: 0}
+    - _Grass2: {r: 0.53756183, g: 0.7529412, b: 0.43137255, a: 0}
     - _Speed: {r: 0.1, g: 0.1, b: 0, a: 0}
     - _Vector0: {r: 0, g: 10.08, b: 0, a: 0}

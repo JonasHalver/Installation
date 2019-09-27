@@ -12,7 +12,7 @@ Shader "Particle"
 	{
 		
 		
-		Tags { "RenderType"="Transparent" "Transparent"="Transparent" }
+		Tags { "RenderType"="Opaque" }
 		LOD 100
 
 		CGINCLUDE
@@ -23,7 +23,6 @@ Shader "Particle"
 		ColorMask RGBA
 		ZWrite Off
 		ZTest LEqual
-		Offset 0 , 0
 		
 		
 		
@@ -114,16 +113,16 @@ Shader "Particle"
 }
 /*ASEBEGIN
 Version=17000
-784;171;1130;541;1352.018;198.5873;1.673835;True;False
+659;377;1130;474;1072.623;174.0596;1.3;True;False
 Node;AmplifyShaderEditor.SamplerNode;2;-799.5148,-44.93617;Float;True;Property;_VertexMap;VertexMap;0;0;Create;True;0;0;False;0;None;5c0f55e4617d25143a8574317415ea6b;True;0;False;white;Auto;False;Object;-1;Auto;Texture2D;6;0;SAMPLER2D;;False;1;FLOAT2;0,0;False;2;FLOAT;0;False;3;FLOAT2;0,0;False;4;FLOAT2;0,0;False;5;FLOAT;1;False;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.DynamicAppendNode;3;-412.7214,-33.51181;Float;False;FLOAT2;4;0;FLOAT;0;False;1;FLOAT;0;False;2;FLOAT;0;False;3;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.RangedFloatNode;5;-419.927,127.8292;Float;False;Constant;_Float0;Float 0;1;0;Create;True;0;0;False;0;0.5;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleSubtractOpNode;4;-268.7214,-22.51181;Float;False;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.SimpleSubtractOpNode;4;-251.8214,-1.711816;Float;False;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.RangedFloatNode;6;-165.7214,133.4882;Float;False;Constant;_Float1;Float 1;1;0;Create;True;0;0;False;0;2;0;0;0;0;1;FLOAT;0
-Node;AmplifyShaderEditor.SimpleMultiplyOpNode;7;-61.52143,-15.11181;Float;False;2;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
+Node;AmplifyShaderEditor.SimpleMultiplyOpNode;7;-31.62143,10.88818;Float;False;2;2;0;FLOAT2;0,0;False;1;FLOAT;0;False;1;FLOAT2;0
 Node;AmplifyShaderEditor.VertexColorNode;9;-522.0779,259.6214;Float;False;0;5;COLOR;0;FLOAT;1;FLOAT;2;FLOAT;3;FLOAT;4
 Node;AmplifyShaderEditor.SimpleMultiplyOpNode;8;155.9012,13.86295;Float;False;3;3;0;FLOAT2;0,0;False;1;FLOAT;0;False;2;FLOAT;0;False;1;FLOAT2;0
-Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;1;338.5001,145.7;Float;False;True;2;Float;ASEMaterialInspector;0;1;Particle;0770190933193b94aaa3065e307002fa;True;Unlit;0;0;Unlit;2;True;4;1;False;-1;1;False;-1;0;1;False;-1;1;False;-1;True;0;False;-1;0;False;-1;True;False;True;0;False;-1;True;True;True;True;True;0;False;-1;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;2;False;-1;True;3;False;-1;True;True;0;False;-1;0;False;-1;True;2;RenderType=Transparent=RenderType;Transparent=Transparent;True;2;0;False;False;False;False;False;False;False;False;False;True;1;LightMode=ForwardBase;False;0;;0;0;Standard;1;Vertex Position,InvertActionOnDeselection;1;0;1;True;False;2;0;FLOAT4;0,0,0,0;False;1;FLOAT3;0,0,0;False;0
+Node;AmplifyShaderEditor.TemplateMultiPassMasterNode;11;338.5001,145.7;Float;False;True;2;Float;ASEMaterialInspector;0;1;Particle;0770190933193b94aaa3065e307002fa;True;Unlit;0;0;Unlit;2;True;4;1;False;-1;1;False;-1;0;1;False;-1;0;False;-1;True;0;False;-1;0;False;-1;True;False;True;0;False;-1;True;True;True;True;True;0;False;-1;True;False;255;False;-1;255;False;-1;255;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;7;False;-1;1;False;-1;1;False;-1;1;False;-1;True;2;False;-1;True;0;False;-1;True;False;0;False;-1;0;False;-1;True;1;RenderType=Opaque=RenderType;True;2;0;False;False;False;False;False;False;False;False;False;True;1;LightMode=ForwardBase;False;0;;0;0;Standard;1;Vertex Position,InvertActionOnDeselection;1;0;1;True;False;2;0;FLOAT4;0,0,0,0;False;1;FLOAT3;0,0,0;False;0
 WireConnection;3;0;2;1
 WireConnection;3;1;2;2
 WireConnection;4;0;3;0
@@ -133,6 +132,6 @@ WireConnection;7;1;6;0
 WireConnection;8;0;7;0
 WireConnection;8;1;2;4
 WireConnection;8;2;9;4
-WireConnection;1;0;8;0
+WireConnection;11;0;8;0
 ASEEND*/
-//CHKSM=C2D64B9C9888D9E7E31C838644DC34A053E62225
+//CHKSM=88F8286489B3ACC2190C51DD7C1B8E764193A436
